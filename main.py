@@ -127,7 +127,7 @@ def unique_users(pk):
         db.session.commit()
         return f'User {pk} edited'
     elif request.method == 'DELETE':
-        db.session.filter(User.id == pk).delete()
+        db.session.query(User).filter(User.id == pk).delete()
         db.session.commit()
         return f'{pk} deleted'
     else:
@@ -170,7 +170,7 @@ def unique_orders(pk):
         db.session.commit()
         return f'Order {pk} edited'
     elif request.method == 'DELETE':
-        db.session.filter(Order.id == pk).delete()
+        db.session.query(Order).filter(Order.id == pk).delete()
         db.session.commit()
         return f'{pk} deleted'
     else:
@@ -207,7 +207,7 @@ def unique_offer(pk):
         db.session.commit()
         return f'Offer {pk} edited'
     elif request.method == 'DELETE':
-        db.session.filter(Offer.id == pk).delete()
+        db.session.query(Offer).filter(Offer.id == pk).delete()
         db.session.commit()
         return f'{pk} deleted'
     else:
