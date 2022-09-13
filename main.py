@@ -101,7 +101,7 @@ def all_users():
         return jsonify(response_json)
     elif request.method == 'POST':
         data_json = request.json
-        new_user = User(data_json)
+        new_user = User(**data_json)
         db.session.add(new_user)
         db.session.commit()
         return f'{new_user.first_name} added'
@@ -117,12 +117,11 @@ def unique_users(pk):
         return jsonify(response_json)
     elif request.method == 'PUT':
         data = request.json
-        response.id = data['id']
-        response.first_name = data['first_name'],
-        response.last_name = data['last_name'],
-        response.age = data['age'],
-        response.email = data['email'],
-        response.role = data['role'],
+        response.first_name = data['first_name']
+        response.last_name = data['last_name']
+        response.age = data['age']
+        response.email = data['email']
+        response.role = data['role']
         response.phone = data['phone']
         db.session.add(response)
         db.session.commit()
@@ -143,7 +142,7 @@ def all_orders():
         return jsonify(response_json)
     elif request.method == 'POST':
         data_json = request.json
-        new_order = Order(data_json)
+        new_order = Order(**data_json)
         db.session.add(new_order)
         db.session.commit()
         return f'Order №{new_order.id} added'
@@ -159,15 +158,14 @@ def unique_orders(pk):
         return jsonify(response_json)
     elif request.method == 'PUT':
         data = request.json
-        response.id = data['id'],
-        response.name = data['name'],
-        response.description = data['description'],
-        response.start_date = data['start_date'],
-        response.end_date = data['end_date'],
-        response.address = data['address'],
-        response.price = data['price'],
-        response.customer_id = data['customer_id'],
-        response.executor_id = data['executor_id'],
+        response.name = data['name']
+        response.description = data['description']
+        response.start_date = data['start_date']
+        response.end_date = data['end_date']
+        response.address = data['address']
+        response.price = data['price']
+        response.customer_id = data['customer_id']
+        response.executor_id = data['executor_id']
         db.session.add(response)
         db.session.commit()
         return f'Order {pk} edited'
@@ -187,7 +185,7 @@ def all_offers():
         return jsonify(response_json)
     elif request.method == 'POST':
         data_json = request.json
-        new_offer = Offer(data_json)
+        new_offer = Offer(**data_json)
         db.session.add(new_offer)
         db.session.commit()
         return f'Offer №{new_offer.id} added'
@@ -203,8 +201,7 @@ def unique_offer(pk):
         return jsonify(response_json)
     elif request.method == 'PUT':
         data = request.json
-        response.id = data['id'],
-        response.order_id = data['order_id'],
+        response.order_id = data['order_id']
         response.executor_id = data['executor_id']
         db.session.add(response)
         db.session.commit()
